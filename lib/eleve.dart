@@ -214,10 +214,10 @@ class _ElevePageState extends State<ElevePage> {
     Map<String, dynamic> userData = {
       'identifiant': _identifiantController.text,
       'nom': _nomController.text,
-      'prénom': _prenomController.text,
+      'prenom': _prenomController.text,
       'email': _emailController.text,
-      'filière': _selectedFiliere,
-      'année': _anneeController.text,
+      'filiere': _selectedFiliere,
+      'annee': _anneeController.text,
       'empreinte': _isFingerprintAuthenticated,
     };
 

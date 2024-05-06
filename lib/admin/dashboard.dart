@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model.dart';
 import 'grid/ajou_admin.dart'; // Importer la page AjouterAdminPage
 import 'grid/list_admin.dart'; // Importer la page ListAdmin
+import 'grid/list_etu.dart'; // Importer la page ListEtudiant
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -160,7 +161,10 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                           onTap: () {
-                            // Action lorsque "Tous les étudiants" est tapé
+                            // Naviguer vers la page ListEtudiant sur le grid droit
+                            setState(() {
+                              _currentWidget = ListEtudiant();
+                            });
                           },
                         ),
                         ListTile(
