@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243938927337",
+    "project_id": "universite-69406",
+    "storage_bucket": "universite-69406.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243938927337:android:3a8d39cd70e68926428678",
+        "android_client_info": {
+          "package_name": "com.example.student_presence"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpaUMHY7fND3-3rMSgnnhSsvZtubrwuJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
