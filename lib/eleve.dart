@@ -16,9 +16,15 @@ class _ElevePageState extends State<ElevePage> {
   TextEditingController _nomController = TextEditingController();
   TextEditingController _prenomController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _anneeController = TextEditingController();
-
   String _selectedFiliere = ''; // Filière sélectionnée dans le dropdown
+  String _selectedAnnee = ''; // Année sélectionnée dans le dropdown
+  List<String> annees = [
+    '1ère année',
+    '2ème année',
+    '3ème année',
+    '4ème année',
+    '5ème année'
+  ]; // Liste des années
 
   @override
   Widget build(BuildContext context) {
@@ -157,16 +163,26 @@ class _ElevePageState extends State<ElevePage> {
                   },
                 ),
                 SizedBox(height: 16), // Espacement entre les champs de saisie
-                // Champ de saisie pour l'année
-                TextFormField(
-                  controller: _anneeController,
+                // Champ de sélection pour l'année
+                DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     labelText: 'Année',
                     prefixIcon: Icon(Icons.date_range), // Ajouter l'icône
                   ),
+                  items: annees.map((String annee) {
+                    return DropdownMenuItem<String>(
+                      value: annee,
+                      child: Text(annee),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedAnnee = value!;
+                    });
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Veuillez saisir l\'année';
+                      return 'Veuillez sélectionner une année';
                     }
                     return null;
                   },
@@ -212,9 +228,9 @@ class _ElevePageState extends State<ElevePage> {
                       _nomController.clear();
                       _prenomController.clear();
                       _emailController.clear();
-                      _anneeController.clear();
                       setState(() {
                         _selectedFiliere = '';
+                        _selectedAnnee = '';
                       });
                     }
                   },
@@ -262,7 +278,7 @@ class _ElevePageState extends State<ElevePage> {
       'prenom': _prenomController.text,
       'email': _emailController.text,
       'filiere': _selectedFiliere,
-      'annee': _anneeController.text,
+      'annee': _selectedAnnee,
       'empreinte': _isFingerprintAuthenticated,
     };
 

@@ -4,6 +4,7 @@ import 'dart:convert'; // Importer dart:convert pour encoder en UTF-8
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'admin/dashboard.dart'; // Importez la page Dashboard
 import 'eleve.dart';
+import 'ketrika.dart'; // Importez la page KetrikaPage
 
 void main() {
   runApp(StudentModel());
@@ -79,6 +80,21 @@ class MobileLoginPage extends StatelessWidget {
               child: Text(
                 'S\'enregistrer',
                 style: TextStyle(fontSize: 20),
+              ),
+            ),
+            SizedBox(
+                height: 20), // Espacement entre le bouton et le bouton "Essai"
+            // Bouton "Essai" pour aller vers KetrikaPage
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => KetrikaPage()),
+                );
+              },
+              child: Text(
+                'Essai',
+                style: TextStyle(fontSize: 18, color: Colors.blue),
               ),
             ),
           ],

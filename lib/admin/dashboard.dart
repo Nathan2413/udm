@@ -3,6 +3,7 @@ import '../model.dart';
 import 'grid/ajou_admin.dart'; // Importer la page AjouterAdminPage
 import 'grid/list_admin.dart'; // Importer la page ListAdmin
 import 'grid/list_etu.dart'; // Importer la page ListEtudiant
+import 'grid/presence.dart'; // Importer la page PresencePage
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -176,7 +177,10 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                           onTap: () {
-                            // Action lorsque "Présence" est tapée
+                            // Naviguer vers la page PresencePage sur le grid droit
+                            setState(() {
+                              _currentWidget = PresencePage();
+                            });
                           },
                         ),
                       ],
