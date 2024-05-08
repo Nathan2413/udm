@@ -24,15 +24,19 @@ class _ElevePageState extends State<ElevePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null, // Définir l'appBar comme null
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey, // Assigner la clé du formulaire
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment:
+                  MainAxisAlignment.start, // Aligner le contenu en haut
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(
+                    height:
+                        40), // Espacement entre le haut de l'écran et le titre
                 Row(
                   children: [
                     IconButton(
@@ -51,9 +55,10 @@ class _ElevePageState extends State<ElevePage> {
                       child: Text(
                         'Mascareignes',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 28, // Taille du titre
                           fontWeight: FontWeight.bold,
                           color: Colors.blue, // Couleur du titre
+                          fontFamily: 'Roboto', // Police du titre
                         ),
                       ),
                     ),
@@ -65,7 +70,10 @@ class _ElevePageState extends State<ElevePage> {
                 // Champ de saisie pour l'identifiant
                 TextFormField(
                   controller: _identifiantController,
-                  decoration: InputDecoration(labelText: 'Identifiant'),
+                  decoration: InputDecoration(
+                    labelText: 'Identifiant',
+                    prefixIcon: Icon(Icons.person), // Ajouter l'icône
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez saisir votre identifiant';
@@ -77,7 +85,10 @@ class _ElevePageState extends State<ElevePage> {
                 // Champ de saisie pour le nom
                 TextFormField(
                   controller: _nomController,
-                  decoration: InputDecoration(labelText: 'Nom'),
+                  decoration: InputDecoration(
+                    labelText: 'Nom',
+                    prefixIcon: Icon(Icons.person), // Ajouter l'icône
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez saisir votre nom';
@@ -89,7 +100,10 @@ class _ElevePageState extends State<ElevePage> {
                 // Champ de saisie pour le prénom
                 TextFormField(
                   controller: _prenomController,
-                  decoration: InputDecoration(labelText: 'Prénom'),
+                  decoration: InputDecoration(
+                    labelText: 'Prénom',
+                    prefixIcon: Icon(Icons.person), // Ajouter l'icône
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez saisir votre prénom';
@@ -101,7 +115,10 @@ class _ElevePageState extends State<ElevePage> {
                 // Champ de saisie pour l'email
                 TextFormField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    prefixIcon: Icon(Icons.email), // Ajouter l'icône
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez saisir votre email';
@@ -112,7 +129,10 @@ class _ElevePageState extends State<ElevePage> {
                 SizedBox(height: 16), // Espacement entre les champs de saisie
                 // Champ de sélection pour la filière
                 DropdownButtonFormField<String>(
-                  decoration: InputDecoration(labelText: 'Filière'),
+                  decoration: InputDecoration(
+                    labelText: 'Filière',
+                    prefixIcon: Icon(Icons.school), // Ajouter l'icône
+                  ),
                   items: [
                     DropdownMenuItem(
                         child: Text('Informatique Appliquée'),
@@ -140,7 +160,10 @@ class _ElevePageState extends State<ElevePage> {
                 // Champ de saisie pour l'année
                 TextFormField(
                   controller: _anneeController,
-                  decoration: InputDecoration(labelText: 'Année'),
+                  decoration: InputDecoration(
+                    labelText: 'Année',
+                    prefixIcon: Icon(Icons.date_range), // Ajouter l'icône
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Veuillez saisir l\'année';
@@ -150,23 +173,29 @@ class _ElevePageState extends State<ElevePage> {
                 ),
                 SizedBox(height: 16), // Espacement entre les champs de saisie
                 // Bouton pour scanner empreinte digitale
-                IconButton(
-                  icon: Icon(
-                    _isFingerprintAuthenticated
-                        ? Icons.fingerprint_rounded
-                        : Icons.fingerprint_outlined,
-                    color: _isFingerprintAuthenticated
-                        ? Colors.red
-                        : null, // Couleur de l'icône en rouge si authentifié
-                    size: 80, // Taille de l'icône
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(100), // Bordure circulaire
                   ),
-                  onPressed: () async {
-                    // Logique pour scanner empreinte digitale
-                    bool authenticated = await _scanFingerprint();
-                    setState(() {
-                      _isFingerprintAuthenticated = authenticated;
-                    });
-                  },
+                  child: IconButton(
+                    icon: Icon(
+                      _isFingerprintAuthenticated
+                          ? Icons.fingerprint_rounded
+                          : Icons.fingerprint_outlined,
+                      color: _isFingerprintAuthenticated
+                          ? Colors.red
+                          : null, // Couleur de l'icône en rouge si authentifié
+                      size: 80, // Taille de l'icône
+                    ),
+                    onPressed: () async {
+                      // Logique pour scanner empreinte digitale
+                      bool authenticated = await _scanFingerprint();
+                      setState(() {
+                        _isFingerprintAuthenticated = authenticated;
+                      });
+                    },
+                  ),
                 ),
                 SizedBox(
                     height:
@@ -189,7 +218,23 @@ class _ElevePageState extends State<ElevePage> {
                       });
                     }
                   },
-                  child: Text('Enregistrer'),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.blue), // Couleur de fond bleue
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Bordure arrondie
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    'Enregistrer',
+                    style: TextStyle(
+                      fontSize: 18, // Taille du texte
+                      color: Colors.white, // Couleur du texte
+                    ),
+                  ),
                 ),
               ],
             ),
